@@ -1,7 +1,7 @@
 
-\documentclass [PhD] {uclathes}
+\documentclass [MS] {uclathes}
 
-% \input {mymacros}                         % personal LaTeX macros
+\input {preamble}                         % personal LaTeX macros
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -15,29 +15,26 @@
 %                                                                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title          {Improving the Throughput \\
-	of Connectionless Datagram Protocols \\
-	over Networks with Limited Bandwidth}
-\author         {Richard Bert Wales}
-\department     {Computer Science}
+\title          {Diverse R-PPG: Contactless Smartphone Camera-based Heart \\
+                Rate Estimation for Diverse Skin Tones and Scenes}
+\author         {Krish Kabra}
+\department     {Electrical and Computer Engineering}
 % Note:  degreeyear should be optional, but as of  5-Feb-96
 % it seems required or you get a year of ``2''.   -johnh
-\degreeyear     {1993}
+\degreeyear     {2021}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chair          {Jack W.\ Carlyle}
-\member         {Mario Gerla}
-\member         {David G.\ Cantor}
-\member         {Richard L.\ Baker}
-\member         {Robert M.\ Stevenson}
+\chair          {Achuta Kadambi}
+\member         {Aydogan Ozcan}
+\member         {Mani B. Srivastava}
+\member         {Laleh Jalilian}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\dedication     {\textsl{To my mother \ldots \\
-		who---among so many other things--- \\
-		saw to it that I learned to touch-type \\
-		while I was still in elementary school}}
+\dedication     {\textsl{To Mum and Dad. \\
+		Your love and support are the root \\
+		of my accomplishments.}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,16 +42,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\publication    {\textsl{MADHOUS Reference Manual.}
-	Stanford University, Dean of Student Affairs
-	(Residential Education Division), 1978.
-	Technical documentation for the MADHOUS
-	software system used to assign students to
-	on-campus housing.}
+% \publication    {\textsl{MADHOUS Reference Manual.}
+% 	Stanford University, Dean of Student Affairs
+% 	(Residential Education Division), 1978.
+% 	Technical documentation for the MADHOUS
+% 	software system used to assign students to
+% 	on-campus housing.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\abstract       {(Abstract omitted for brevity)}
+\abstract       {Heart rate (HR) is an essential clinical measure for the assessment of cardiorespiratory instability. The growing telemedicine market opens up the urgent requirement for scalable yet affordable remote HR estimation. Smartphones that use in-built camera modules to measure HR from facial videos offer a more economical solution in comparison to mass deployment of wearable sensors. However, existing computer vision methods that estimate HR from facial videos exhibit biased performance against dark skin tones. This is a major concern, since communities of color are disproportionately affected by both COVID-19 and cardiovascular disease. We identify the origin of this bias and present a novel physics-driven algorithm that boosts performance on darker skin tones in our reported data. We assess the performance of our method through the creation of the first telemedicine-focused remote vital signs dataset, the VITAL dataset. 432 videos ($\sim$864 minutes) of 54 subjects with diverse skin tones are recorded under realistic scene conditions with corresponding vital sign data. Our method reduces errors due to lighting changes, shadows, and specular highlights and imparts unbiased performance gains across skin tones, setting the stage for making non-contact HR sensing technologies a viable reality for patients across skin tones, using just smartphone cameras.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -67,8 +64,15 @@
 %
 % Ordinarily each chapter (at least) is in a separate file.
 %
-\input {include/introduction}                         
+\input {include/introduction}  
+\input {include/theory}  
+\input {include/methods}  
+\input {include/results}  
+\input {include/conclusions}  
+\appendix
+\input {include/appendix}
 
+  
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}    % bibliography references

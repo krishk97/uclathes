@@ -1,4 +1,3 @@
-
 %
 % introduction.tex
 % Copyright (C) 2021 by Krish Kabra, <krish@kabra.com>.
@@ -6,58 +5,35 @@
 
 \chapter{Introduction}
 
-Filing services are one of the most user-visible
-  parts of the operating system,
-  so it is not surprising that 
-  many new services are proposed
-  by researchers
-  and that a variety of third parties are interested in providing
-  these solutions.
-Of the many innovations which have been proposed,
-  very few have become widely available
-  in a timely fashion.
-We believe this delay results from two deficiencies
-  in practices of current file-system development.
-First,
-  file systems are large and difficult to implement.
-This problem is compounded because
-  no good mechanism exists to allow
-  new services to build on those which already exist.
-Second,
-  file systems today are built around a few fixed interfaces
-  which fail to accommodate the change and evolution inherent in
-  operating systems development.
-Today's filing interfaces vary from
-  system to system,
-  and even between point releases of a 
-  single operating system.
-These differences greatly complicate and therefore discourage
-  third-party development and adoption of filing extensions.
+Heart rate (HR) is an important clinical vital sign used in the evaluation of cardiorespiratory and hemodynamic stability. Conventional HR assessment is performed in-person at a clinic or hospital using specialized monitoring equipment. However, in recent years, healthcare delivery has progressed towards a remote model that uses telemedicine and mobile health (mHealth) technologies for patient evaluations. This transition has been accelerated by the COVID-19 pandemic \cite{annis_rapid_2020,ford_leveraging_2020,connolly_rapid_2020} in order to protect patients and healthcare workers from infectious exposure in a pandemic setting. The assessment of HR in patients with suspected COVID-19 is particularly important as COVID-19 has been associated with pre-existing cardiovascular disease \cite{nishiga_covid-19_2020}. Given the clinical relevance of HR in triage decisions, diagnosis, prognosis, and as a criterion for transfer to higher-level medical care, there is a pressing need to develop HR sensing solutions that can facilitate the rapidly growing domain of telemedicine-based care and remote patient monitoring.
 
-These problems raise barriers to the widespread
-  development, deployment, and maintenance of new filing
-  services.
-The thesis of this dissertation is that
-  a layered,
-  \emph{stackable} structure
-  with an \emph{extensible} interface
-  provides a much better methodology
-  for file-system development.
-We propose construction of filing services from a number
-  of potentially independently developed modules.
-By stackable,
-  we mean that these modules are bounded by
-  identical, or \emph{symmetric}, interfaces above and below.
-By extensible, we mean that these interfaces
-  can be independently changed by multiple parties,
-  without invalidating existing or future work.
+Presently, HR sensing solutions for telemedicine and remote patient monitoring have relied on the adoption of wearable sensors to make plethysmographic or electrocardiographic measurements \cite{dinh-le_wearable_2019,lukas_emerging_2020}. Although such wearable technologies have seen major advances in the past decade \cite{kumar_mobile_2013, steinhubl_emerging_2015}, at a population level, supplying and shipping such devices to patients is expensive and not scalable. Figure \ref{fig:projected_costs_pulseox} shows the projected cost of deploying finger pulse oximeters for telemedicine application, the most viable and inexpensive existing solution to assess patient HR and oxygen saturation. For the scales at which telemedicine is projected to grow, even this solution would involve a deployment cost in excess of \$700 million in the US alone (see Appendix \ref{chap:telemedicine_cost_projections} for calculation details). This expense can also create a barrier to adoption of mHealth technologies that disproportionately affects rural and socioeconomically burdened communities \cite{sawyer_wearable_2020}. 
 
-To validate this thesis we developed a
-  framework supporting stackable file-systems
-  and used that framework to construct several
-  different filing services.
-This dissertation describes the design,
-  implementation,
-  and evaluation of this system. \cite{chari2020diverse}
+\begin{figure}
+    \centering
+    \includegraphics[height=3in]{include/project_costs_fig.png}
+    \caption{\textbf{Projected cost of deploying finger pulse oximeters for telemedicine application.} HR sensing solutions for telemedicine and remote patient monitoring have relied on the adoption of wearable sensors. Currently, the most viable and inexpensive existing wearable solution to assess patient HR and oxygen saturation are finger pulse oximeters. For the scales at which telemedicine is projected to grow, such a solution would involve a deployment cost in excess of \$700 million in the US alone. In contrast, a smartphone camera-based method offers a purely algorithmic solution that can be integrated into existing healthcare system telemedicine video-conferencing applications.}
+    \label{fig:projected_costs_pulseox}
+\end{figure}
+
+In contrast to wearable sensors, recent methods have proposed using camera-based hardware present on modern-day smartphones in combination with signal processing and computer vision algorithms to estimate key vital signs, including HR \cite{}. Given the high penetration of mobile phone technology globally \cite{}, such a solution would potentially have zero marginal cost, thereby offering clinicians a highly accessible and inexpensive method of assessing vital signs remotely. 
+
+Camera-based HR sensing methods can be categorized into two distinct methodologies: contact-based and contactless. Contact-based methods, where the finger is typically placed overtop the camera module, have already seen widespread applications in major smartphones \cite{proesmans_mobile_2019,li_current_2019}. Such methods show good performance, however, their utility for telemedicine video-conferencing visits is potentially limited as the camera module is covered during measurement. This prevents continuous monitoring of patient HR, visual well-being, and collection of other vitals such as respiratory rate and spatial blood perfusion maps. Contactless methods circumvent this limitation by remotely extracting a blood volume pulse (BVP) signal and corresponding HR estimate traditionally from facial videos \cite{}. The consequence of capturing a larger field-of-view is a much weaker signal, and therefore worse performance. 
+
+Remote photoplethysmography (r-PPG) is by far the most prominent technique used in literature for contactless camera-based HR sensing. R-PPG operates by looking for subtle color variations visible on the surface human skin, caused by sub-dermal light absorption fluctuations from changes in blood volume and content. Early work conducted by Verkruysse \textit{et al.} \cite{verkruysse_remote_2008} showed that plethysmographic signals could be measured using ambient light and a consumer-grade digital camera. In order to accurately isolate and extract the correct BVP signal corresponding to the HR, several r-PPG algorithms have been proposed, including blind source separation (BSS)~\cite{}, model-based~\cite{}, unsupervised data-driven~\cite{}, and supervised deep learning~\cite{} methods. Unfortunately, the performance of existing r-PPG algorithms fluctuates with changes in illumination condition (32), subject motion (19, 30, 33), and skin tone (40). Moreover, assessment of these algorithms has typically been done on computer vision datasets that are not focused on telemedicine applications. Consequently, these datasets do not represent characteristics that are important for clinical translation such as a large population with diverse skin tone and gender representation and video data collection on end-user devices such as smartphones. 
+
+The focus of this thesis is on developing a contactless camera-based HR sensing method for smartphone deployment that can successfully translate to telemedicine application. In particular, this thesis specifically addresses the bias for skin tone present in r-PPG algorithms. We provide a theoretical framework to understand the unique physics that underlies the inconsistency in r-PPG measurement across skin tones. From this, we establish that the bias is due to imaging noise, and appropriately propose r-PPG denoising methods to alleviate performance losses, including a novel algorithm that achieves overall state-of-the-art performance and large performance gains for dark skin tones. To assess the performance of the proposed method, we collect the first remote vital signs detection dataset focused on telemedicine applications that is demographically diverse. 
+
+\section{Contributions}
+
+In context of prior r-PPG related works, this thesis demonstrates the following technical contributions:
+
+\begin{enumerate}
+    \item A light-transport theory for r-PPG application that provides novel mathematical insights of r-PPG performance and biases with respect to skin tone.
+    \item The first clinical telemedicine-focused remote vital signs dataset, named VITAL, that contains a diverse population of subjects under a variety of recording conditions. 
+    \item A novel r-PPG algorithm that achieves overall state-of-the-art performance and large performance gains for dark skin tones on the VITAL dataset.
+\end{enumerate}
+
+% \section{Organization}
 
 
