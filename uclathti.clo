@@ -249,6 +249,36 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %								       %
+%			 PREVIOUS PUBLICATIONS PAGE			       %
+%								       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newif\if@prevpubs
+\def\@previouspublications{}
+\newcommand\previouspublications[1]{\@prevpubstrue\def\@previouspublications{#1}}
+
+\newcommand\@makepreviouspublicationsheading{
+  {
+    \centering
+    \header{Previous Publications}
+    \vskip 12pt
+  }
+}
+
+
+\newcommand\@makepreviouspublications{
+   \if@prevpubs
+      \ColumnSaveHeading{\@makepreviouspublicationsheading}
+      \par\pagestyle{plain}
+      \renewcommand\baselinestretch{\@spacing}\@normalsize
+      \noindent \normalsize \normalfont \@previouspublications
+      \vfill
+      \ColumnRestore
+   \fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%								       %
 %			      VITA PAGE				       %
 %								       %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -532,6 +562,7 @@
   \listoffigures
   \listoftables
   \@makeacknowledgments
+  \@makepreviouspublications
   \@makevitapage
   \newpage \pagenumbering{arabic}
 }
